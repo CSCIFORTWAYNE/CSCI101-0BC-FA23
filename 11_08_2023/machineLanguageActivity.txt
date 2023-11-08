@@ -1,0 +1,33 @@
+int x = 95;  5F in 2s complement binary
+int y = -26; E6 in 2s complement binary
+int z = x + y; //69 = 45 in hex
+
+215F
+3120
+2FE6
+3F21
+1520
+1621
+5A56
+3A1E
+C000
+
+
+
+215F //load 5f into register 1
+3120 //establish x as memory cell 20 and load the data from the cpu into it.
+2FE6 //load E6(-26 in 2s complement) into register F
+3F21 //establish y as memory cell 21 and load the data from the cpu into it.
+1520 //load x from memory into register 5
+1621 //load y from memory into register 6
+5A56 //add integers in 5 and 6 and store in A
+3A1E //store the math result in a memory location for z.
+C000 //halt
+
+
+Lecture Activity Convert the following C++ snippet to a machine language program.
+int a = 70;
+int b = 7;
+int c = -22;
+int d = a + b + c + 52; //final answer 107 or 6B
+
