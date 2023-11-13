@@ -56,11 +56,14 @@ int main()
     while (!caloriesFile.eof())
     {
         caloriesFile >> calories;
-        if (caloriesFile)
+        std::cout << calories;
+        if (!caloriesFile)
         {
-            sum += calories; // sum = sum + calories;
-            count++;
+            continue;    
         }
+        sum += calories; // sum = sum + calories;
+        count++;
+
     }
     if (std::cin.eof())
         return 0;
