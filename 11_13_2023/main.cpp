@@ -22,8 +22,32 @@ int main()
     {
         std::cout << i << " ";
     }
-
     std::cout << std::endl;
+//finish setting up the for loops to produce the shape below:
+/*       *     
+         *  *     
+       *  *  *    
+       *  *  *  *    
+     *  *  *  *  *   
+     *  *  *  *  *  *   
+   *  *  *  *  *  *  *  
+   *  *  *  *  *  *  *  *  
+ *  *  *  *  *  *  *  *  * 
+ */
+//start with a for loop that loops 10 times;
+{
+    for (int j = (10 - i) / 2; j > 0; j--)
+    {       
+        std::cout << "  "; 
+    }
+    //next create a for loop that prints " * " this for loop should run i times (match the number of times the outer for loop has run)
+    for (int j = (10 - i) / 2; j > 0; j--)
+    { 
+        std::cout << "  ";
+    }
+    //print a new line
+}
+
     double calories = 0;
     double sum = 0;
     int count = 0;
