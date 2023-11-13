@@ -9,6 +9,7 @@
 
 int main()
 {
+    // lecture activity part 1 convert the while loop below to a for loop.
     /* int i = 0;
     while (i < 20)
     {
@@ -16,6 +17,13 @@ int main()
         i++; // i = i + 1;
     }
     std::cout << std::endl; */
+    int i;
+    for (i = 0; i <= 20; i = i + 5)
+    {
+        std::cout << i << " ";
+    }
+
+    std::cout << std::endl;
     double calories = 0;
     double sum = 0;
     int count = 0;
