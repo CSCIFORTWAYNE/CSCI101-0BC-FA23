@@ -22,6 +22,10 @@ std::string printSuit(suitType theSuit);
 void displaySuitList();
 suitType inputToSuitType(int suitInput);
 
+// lecture activity create an enum with your favorite cookies call it cookieType (at least 3 values)
+// create an input and output function for your enum
+// create a main that makes 2 variables of enum and does input and output with them
+
 int main()
 {
 
