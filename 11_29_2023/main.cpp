@@ -2,10 +2,33 @@
 #include <limits>
 
 const int LIST_SIZE = 10;
+const int NUM_SUITS = 4;
+
+enum suitType
+{
+    HEARTS,
+    DIAMONDS,
+    SPADES,
+    CLUBS
+};
+const suitType SUIT_LIST[NUM_SUITS] = {HEARTS,
+                                       DIAMONDS,
+                                       SPADES,
+                                       CLUBS};
+const std::string SUIT_NAMES[NUM_SUITS] = {"Hearts",
+                                           "Diamonds",
+                                           "Spades",
+                                           "Clubs"};
+const std::string SUIT_OUTPUT[NUM_SUITS] = {"Hearts  ♥",
+                                            "Diamonds  ♦",
+                                            "Spades  ♠",
+                                            "Clubs  ♣"};
 
 int inputInt(std::string prompt);
 void resetStream();
 void initialize(int list[], int listSize);
+void seqSearch(const int list[], int listSize, int &foundPos, int searchItem);
+
 // lecture activity fill in the following functions
 void inputArray(int list[], int listSize);
 void outputArray(int list[], int listSize);
@@ -45,6 +68,20 @@ int main()
     }
 
     std::cout << "The largest value is " << list[largestPos] << " at position " << largestPos << std::endl;
+    int foundPos = 0;
+
+    seqSearch(list, LIST_SIZE, foundPos, 73);
+    if (foundPos == -1)
+    {
+        std::cout << "73 was not found in the list." << std::endl;
+    }
+    else
+    {
+        std::cout << "73 was found at position " << foundPos << std::endl;
+    }
+
+    suitType mySuit = DIAMONDS;
+    std::cout << SUIT_OUTPUT[mySuit] << std::endl;
 
     return 0;
 }
@@ -76,5 +113,47 @@ void initialize(int list[], int listSize)
     for (int i = 0; i < listSize; i++)
     {
         list[i] = 0;
+    }
+}
+
+suitType getSuit(std::string prompt)
+{
+    suitType theSuit;
+    int suitInt;
+    std::cout << "Please choose a suit for " << prompt << ":" << std::endl;
+    for (int i = 0; i < NUM_SUITS; i++)
+    {
+        std::cout << i + 1 << ". " << SUIT_NAMES[i] << std::endl;
+    }
+    std::cin >> suitInt;
+
+    while (!std::cin || suitInt < 1 || suitInt > 4)
+    {
+        if (!std::cin)
+        {
+            resetStream();
+        }
+        std::cout << "Please choose a suit for " << prompt << ":" << std::endl;
+        for (int i = 0; i < NUM_SUITS; i++)
+        {
+            std::cout << i + 1 << ". " << SUIT_NAMES[i] << std::endl;
+        }
+        std::cin >> suitInt;
+    }
+    theSuit = SUIT_LIST[suitInt - 1];
+    return theSuit;
+}
+
+void seqSearch(const int list[], int listSize, int &foundPos, int searchItem)
+{
+    bool found = false;
+    foundPos = -1;
+    for (int i = 0; i < listSize && !found; i++)
+    {
+        if (searchItem == list[i])
+        {
+            foundPos = i;
+            found = true;
+        }
     }
 }
