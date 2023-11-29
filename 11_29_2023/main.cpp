@@ -1,5 +1,7 @@
 #include <iostream>
 #include <limits>
+#include <algorithm>
+#include <fstream>
 
 const int LIST_SIZE = 10;
 const int NUM_SUITS = 4;
@@ -28,6 +30,8 @@ int inputInt(std::string prompt);
 void resetStream();
 void initialize(int list[], int listSize);
 void seqSearch(const int list[], int listSize, int &foundPos, int searchItem);
+void selectionSort(int list[], int listSize);
+void initialize(suitType suitTable[][NUM_SUITS], int numRows, int numColumns);
 
 // lecture activity fill in the following functions
 void inputArray(int list[], int listSize);
@@ -82,6 +86,47 @@ int main()
 
     suitType mySuit = DIAMONDS;
     std::cout << SUIT_OUTPUT[mySuit] << std::endl;
+
+    selectionSort(list, LIST_SIZE);
+    for (int i = 0; i < LIST_SIZE; i++)
+    {
+        std::cout << list[i] << std::endl;
+    }
+
+    std::string name = "Hello";
+    std::string nameCpy = name;
+    std::transform(nameCpy.begin(), nameCpy.end(), nameCpy.begin(), ::tolower);
+    nameCpy = nameCpy + ".txt";
+    std::ifstream inFile;
+    inFile.open(nameCpy);
+    if (!inFile.is_open())
+        std::cout << "There is no file named " << nameCpy << std::endl;
+    inFile.close();
+
+    std::ofstream outFile;
+    outFile.open(nameCpy);
+
+    suitType mySuitTable[LIST_SIZE][NUM_SUITS];
+    mySuitTable[4][2] = HEARTS;
+    initialize(mySuitTable, LIST_SIZE, NUM_SUITS);
+
+    int row = 2;
+    for (int col = 0; col < NUM_SUITS; col++)
+    {
+        mySuitTable[row][col] = HEARTS;
+    }
+    int col = 1;
+    for (row = 0; row < LIST_SIZE; row++)
+    {
+        mySuitTable[row][col] = DIAMONDS;
+    }
+    for (row = 0; row < LIST_SIZE; row++)
+    {
+        for (col = 0; col < NUM_SUITS; col++)
+        {
+            mySuitTable[row][col] = SUIT_LIST[col];
+        }
+    }
 
     return 0;
 }
@@ -154,6 +199,29 @@ void seqSearch(const int list[], int listSize, int &foundPos, int searchItem)
         {
             foundPos = i;
             found = true;
+        }
+    }
+}
+
+void selectionSort(int list[], int listSize)
+{
+    int largestPos = 0;
+    for (int unsorted = listSize; unsorted > 1; unsorted--)
+    {
+        findLargest(list, unsorted, largestPos);
+        int temp = list[unsorted - 1];
+        list[unsorted - 1] = list[largestPos];
+        list[largestPos] = temp;
+    }
+}
+
+void initialize(suitType suitTable[][NUM_SUITS], int numRows, int numColumns)
+{
+    for (int row = 0; row < numRows; row++)
+    {
+        for (int col = 0; col < numColumns; col++)
+        {
+            suitTable[row][col] = HEARTS;
         }
     }
 }
